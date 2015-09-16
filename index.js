@@ -6,9 +6,9 @@ var month = 8;
 var year = 2015;
 
 var weeks = cal.monthDays(year, month); // gets an array of arrays of the weeks
-var table = d3.select("#calendar");
-var header = table.append('thead');
-var body = table.append('tbody');
+var table = d3.select("#calendar"); // select and name the element from the dom
+var header = table.append('thead'); // append header to the element
+var body = table.append('tbody'); // append a body to the element
 
 header
   .append('tr')
@@ -28,17 +28,11 @@ header
     return d;
   });
 
-console.log(weeks);
-console.log(table);
-// console.log(header);
-console.log("month?", monthNames[month]);
-
 weeks.forEach(function (week) {
-  console.log(week[0]);
   body
     .append('tr') // append a row for each week
-    .selectAll('td') // select all future table data boxes
-    .data(week) // bind the each element in the week array to a td
+    .selectAll('td') // select all future table data boxes (define the selection to which data will be joined)
+    .data(week) // get your data
     .enter() // for each new piece of data in week array
     .append('td') // append a new table data box
     .attr('class', function (d) {
@@ -48,18 +42,3 @@ weeks.forEach(function (week) {
       return d > 0 ? d : '';
     });
 });
-
-// weeks.forEach(function (week) {
-//   body
-//     .append('tr')
-//     .selectAll('td')
-//     .data(week)
-//     .enter()
-//     .append('td')
-//     .attr('class', function (d) {
-//       return d > 0 ? '' : 'empty';
-//     })
-//     .text(function (d) {
-//       return d > 0 ? d : '';
-//     });
-// });
