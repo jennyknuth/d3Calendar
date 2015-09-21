@@ -29,6 +29,9 @@ header
   });
 
 weeks.forEach(function (week) {
+
+  var options = ["carpool", "school bus", "bike"];
+
   body
     .append('tr') // append a row for each week
     .selectAll('td') // select all future table data boxes (define the selection to which data will be joined)
@@ -40,5 +43,28 @@ weeks.forEach(function (week) {
         })
     .text(function (d) { // this accesses the number value of the day of the week
       return d > 0 ? d : '';
-    });
+    }) // select form going here...
+    .append('select')
+    	.attr('class','select')
+      .on('change', onchange)
+      .selectAll('option')
+    	.data(options).enter()
+    	.append('option')
+    	.text(function (d) { return d; });
+
+// var select = d3.select('body')
+//   .append('select')
+//   	.attr('class','select')
+//     .on('change',onchange)
+//
+// var options = select
+//
+
+function onchange() {
+	selectValue = d3.select('select').property('value')
+	d3.select('tbody')
+  .select('td')
+		// .append('p')
+    .attr('class', selectValue)
+  }
 });

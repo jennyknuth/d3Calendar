@@ -17,3 +17,15 @@
 #calendar td.empty {
   border: none;
 }
+
+.bike {
+  background-color: lightgreen;
+}
+
+.carpool {
+  background-color: purple;
+}
+
+.school {
+  background-color: yellow;
+}
